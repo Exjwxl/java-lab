@@ -1,0 +1,139 @@
+import java.util.Scanner;
+
+class BankAccount {
+int acno;
+double balance;
+String name;
+
+BankAccount(String acc_name,int ac_no) {
+
+name = acc_name;
+acno = ac_no;
+balance = 0;
+
+
+}
+
+void deposit(double deposit) {
+
+if(deposit > 0) {
+balance = balance + deposit;
+System.out.println(" ");
+System.out.println("Amount Deposited : " + deposit);
+System.out.println("Current Balance : " + balance);
+System.out.println(" ");
+}
+else {
+System.out.println(" ");
+System.out.print("Ivalid Amount");
+System.out.println(" ");
+}
+
+}
+
+void withdraw(double withdraw)
+{
+if(withdraw > balance)
+{
+System.out.println("________No sufficient balance_______");
+}
+else
+{
+balance = balance - withdraw;
+System.out.println(" ");
+System.out.println("The Current Balance is : "+balance);
+System.out.println("Enter Amount To be Withdrawn : ");
+System.out.println("The New Balance is : "+balance);
+System.out.println(" ");
+
+}
+}
+
+void printBalance() {
+
+System.out.println(" ");
+System.out.println("Current Balance : " + balance);
+System.out.println("-----------------------");
+System.out.println(" ");
+}
+
+void printDetails() {
+
+System.out.println(" ");
+System.out.println("Account Details");
+System.out.println("---------------");
+System.out.println("Account Number : " + acno);
+System.out.println("Account Name : " + name);
+System.out.println("Account Balance :" + balance);
+System.out.println(" ");
+}
+}
+
+class Bank {
+public static void main(String[] args) {
+
+
+Scanner scanner = new Scanner(System.in);
+BankAccount account = null;
+System.out.println(" ");
+System.out.println("\tBank\n");
+
+
+while (true) {
+            System.out.println(" 1 . Create a New Account");
+            System.out.println(" 2 . Deposit money");
+            System.out.println(" 3 . Display Balance");
+            System.out.println(" 4 . Withdraw money");
+            System.out.println(" 5 . Account Details");
+            System.out.println(" 6 . Exit");
+            System.out.print("Enter Choice: ");
+            int n = scanner.nextInt();
+scanner.nextLine();
+
+
+switch(n) {
+case 1:
+
+System.out.println(" ");
+System.out.print("Enter the Name : ");
+String user_name = scanner.nextLine();
+System.out.print("Enter the Account Number : ");
+int acc_no = scanner.nextInt();
+account = new BankAccount(user_name, acc_no);
+break;
+
+case 2:
+
+System.out.println(" ");
+System.out.print(" Amount to deposit: ");
+double deposit = scanner.nextDouble();
+account.deposit(deposit);
+break;
+
+case 3:
+
+account.printBalance();
+break;
+case 4:
+
+System.out.println(" ");
+System.out.println(" Amount to be withdrawn : ");
+double withdraw = scanner.nextDouble();
+account.withdraw(withdraw);
+break;
+
+case 5:
+
+account.printDetails();
+break;
+
+case 6:
+System.exit(0);
+
+                default:
+                    System.out.println("Invalid Choice");
+}
+}
+}
+}
+
